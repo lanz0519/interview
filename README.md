@@ -6,15 +6,9 @@
 docker-compose up
 ```
 
-2.npm启动，但是需要本地启动一个监听27017的mongodb
-
-```
-npm run start
-```
 
 
-
-关于端口，默认占用3000，如果是npm run start方式启动则要另外添加环境变量NODE_ENV = 3000
+关于端口，默认占用3000
 
 
 
