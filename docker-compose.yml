@@ -9,17 +9,12 @@ services:
       - ./:/app
     environment:
       - TZ=Asia/Shanghai
-  redis:
-    image: redis:5.0.13
-    volumes:
-      - redis:/data
-    environment:
-      - TZ=Asia/Shanghai
   mongo:
     image: mongo:4.4
+    restart: always
     container_name: mongodb
     ports:
-      - "27017:27017"
+      - 27017:27017
     command: mongod
     volumes:
       - "/data/mongo:/data/db"

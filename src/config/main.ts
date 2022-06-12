@@ -1,7 +1,7 @@
 
 const config = {
   PORT: 3000,
-  DATABASE: 'mongodb://localhost:27017',
+  DATABASE: 'mongodb://mongo:27017',
   LOG: {
     COMBINED_FILENAME: 'interview-combined-%DATE%.log',
     ERROR_FILENAME: 'interview-error-%DATE%.log',
