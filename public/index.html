@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- vue -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <!-- axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- element ui -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <div class="funcDiv">
+      <div class="title">creat channel</div>
+      <div class="content">
+        <el-input v-model="channelName" placeholder="请输入channel name"></el-input>
+        <el-button type="primary" :disabled="channelName == null" @click="createChannel()">submit</el-button>
+      </div>
+    </div>
+    <div class="funcDiv">
+      <div class="title">creat message</div>
+      <div class="content">
+        <el-select v-model="channel" placeholder="请选择channel">
+          <el-option v-for="channel in channels" :key="channel.id" :label="channel.name" :value="channel.id">
+          </el-option>
+        </el-select>
+        <el-input v-model="messageTitle" placeholder="请输入message title"></el-input>
+        <el-input v-model="messageContent" placeholder="请输入message content"></el-input>
+        <el-button type="primary" @click="createMessage()"
+          :disabled="messageContent == null || messageTitle == null || channel == null">submit</el-button>
+      </div>
+    </div>
+    <div class="funcDiv">
+      <div class="title">list message</div>
+      <div class="content">
+        <el-select v-model="msgListChannel" placeholder="请选择channel">
+          <el-option v-for="channel in channels" :key="channel.id" :label="channel.name" :value="channel.id">
+          </el-option>
+        </el-select>
+
+        <el-table :data="mesgList" style="width: 1200px">
+          <el-table-column prop="id" label="id" width="400">
+          </el-table-column>
+          <el-table-column prop="title" label="title" width="200">
+          </el-table-column>
+          <el-table-column prop="content" label="content" width="200">
+          </el-table-column>
+          <el-table-column prop="createdAt" label="createdAt" width="200">
+          </el-table-column>
+          <el-table-column prop="channel" label="channel" width="200">
+          </el-table-column>
+        </el-table>
+
+        <div class="block">
+          <el-pagination
+            layout="prev, pager, next"
+            :page-size="5"
+            @prev-click="msgPrevClick()"
+            @next-click="msgNextClick()"
+            :total="msgAllCount">
+          </el-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./js.js"></script>
+
+</html>
+
+<style>
+  .funcDiv {
+    background-color: rgb(255, 255, 255);
+    margin-top: 50px;
+    padding: 40px 20px;
+    display: flex;
+    gap: 50px
+  }
+
+  .title {
+    margin-left: 40%;
+  }
+
+  .content {
+    display: flex;
+    gap: 20px;
+    flex-direction: column
+  }
+</style>
